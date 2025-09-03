@@ -55,7 +55,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       // TODO: Replace with actual API auth
       console.log('Login success:', this.loginForm.value);
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/dashboard']);
     }
   }
 

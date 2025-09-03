@@ -1,0 +1,79 @@
+.appbar-container {
+    height: 5vh; // fixed navbar height
+    width: 100%;
+    background-color: var(--kendo-color-primary);
+}
+
+.k-appbar {
+    height: 100%; // match container height
+    box-shadow: none;
+    background-color: var(--kendo-color-primary);
+    display: flex;
+    align-items: center; // vertically center all sections
+    padding: 0 1rem; // optional horizontal padding
+}
+
+.k-appbar-section {
+    display: flex;
+    align-items: center; // vertically center content in each section
+}
+
+.brand-link {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+
+    span {
+        color: var(--kendo-color-secondary);
+    }
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: flex;
+        align-items: center; // vertically center each link
+    }
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.2s;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+
+    .k-button {
+        color: white;
+    }
+
+    .k-appbar-separator {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        height: 24px;
+    }
+}
+
+kendo-avatar {
+    cursor: pointer;
+    background-color: var(--kendo-color-on-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

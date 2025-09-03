@@ -1,0 +1,39 @@
+<div class="appbar-container">
+  <kendo-appbar position="top">
+
+    <!-- Left brand -->
+    <kendo-appbar-section>
+      <a class="brand-link" routerLink="/home">Emp<span>Budget</span></a>
+    </kendo-appbar-section>
+
+    <!-- Spacer pushes everything after it to the right -->
+    <kendo-appbar-spacer></kendo-appbar-spacer>
+
+    <!-- Navigation links -->
+    <kendo-appbar-section>
+      <ul class="nav-links">
+        <li><a routerLink="/dashboard">Dashboard</a></li>
+        <li><a routerLink="/reports">Reports</a></li>
+        <li><a routerLink="/settings">Settings</a></li>
+      </ul>
+    </kendo-appbar-section>
+
+
+    <!-- Notification icon -->
+    <!-- <kendo-appbar-section class="actions">
+      <kendo-badge-container>
+        <button kendoButton fillMode="flat">
+          <kendo-svgicon [icon]="bellIcon"></kendo-svgicon>
+        </button>
+        <kendo-badge shape="dot" themeColor="warning" size="small" position="inside"></kendo-badge>
+      </kendo-badge-container>
+      <span class="k-appbar-separator"></span>
+    </kendo-appbar-section> -->
+
+    <!-- User Avatar -->
+    <kendo-appbar-section>
+      <kendo-avatar shape="circle" width="30px" height="30px"></kendo-avatar>
+    </kendo-appbar-section>
+
+  </kendo-appbar>
+</div>
