@@ -1,0 +1,41 @@
+<div class="login-wrapper">
+    <h2>Emp<span>Budget</span></h2>
+
+    <div class="login-card">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <!-- Identifier Input -->
+            <div class="form-group">
+                <kendo-textbox formControlName="identifier" placeholder="Username or Email">
+                </kendo-textbox>
+                <div *ngIf="
+            loginForm.get('identifier')?.invalid &&
+            loginForm.get('identifier')?.touched
+          " class="error">
+                    Enter a valid email or username (min 3 characters).
+                </div>
+            </div>
+
+            <!-- Password Input with toggle -->
+            <div class="form-group">
+                <kendo-textbox [type]="passInputType" formControlName="password" placeholder="Password">
+                    <ng-template kendoTextBoxSuffixTemplate>
+                        <button kendoButton fillMode="flat" type="button" (click)="togglePasswordVisibility()"
+                            [svgIcon]="passIcon" class="password-toggle"></button>
+                    </ng-template>
+                </kendo-textbox>
+
+                <div *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+          " class="error">
+                    Password must be at least 6 characters.
+                </div>
+            </div>
+
+            <!-- Login Button -->
+            <button kendoButton fillMode="outline" type="submit" [disabled]="loginForm.invalid" [primary]="true">
+                Login
+            </button>
+        </form>
+    </div>
+</div>
