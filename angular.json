@@ -33,8 +33,7 @@
               {
                 "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
               },
-              "src/styles.scss",
-              "node_modules/@progress/kendo-font-icons/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -97,8 +96,7 @@
               {
                 "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
               },
-              "src/styles.scss",
-              "node_modules/@progress/kendo-font-icons/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }

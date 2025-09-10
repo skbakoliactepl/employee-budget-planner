@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { SheetDescriptor, SpreadsheetModule } from "@progress/kendo-angular-spreadsheet";
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { BudgetService } from '../../services/budget/budget.service';
+import { BudgetPlan } from '../../core/models';
 
 @Component({
   selector: 'app-dashboard',
@@ -68,6 +70,74 @@ export class DashboardComponent {
       name: "Sheet1",
     },
   ];
+
+  constructor(private budgetService: BudgetService) { }
+  ngOnInit(): void {
+    this.loadBudgetPlans();
+  }
+
+  private loadBudgetPlans() {
+    this.budgetService.getAllBudgetPlans().subscribe({
+      next: (plans) => {
+        console.log("PLANS: ", plans);
+
+        this.buildSheet(plans);
+      },
+      error: (err) => {
+        console.error('Error fetching budget plans', err);
+      }
+    });
+  }
+
+  private buildSheet(plans: BudgetPlan[]) {
+    // Build the spreadsheet rows dynamically
+    const rows = [
+      {
+        // Header row
+        cells: [
+          { value: 'Project Name', bold: true, background: '#E1EFFF' },
+          { value: 'Employee', bold: true, background: '#E1EFFF' },
+          { value: 'Month', bold: true, background: '#E1EFFF' },
+          { value: 'Budget Allocated ($)', bold: true, background: '#E1EFFF' },
+          { value: 'Hours Planned', bold: true, background: '#E1EFFF' },
+          { value: 'Cost (Formula)', bold: true, background: '#E1EFFF' },
+          { value: 'Status', bold: true, background: '#E1EFFF' },
+          { value: 'Comments', bold: true, background: '#E1EFFF' }
+        ]
+      },
+      ...plans.map((plan, index) => ({
+        cells: [
+          { value: plan.project }, // Or map to project name
+          { value: plan.employeeName }, // Or map to employee name
+          { value: plan.month }, // Or map to month name
+          { value: plan.budgetAllocated },
+          { value: plan.hoursPlanned },
+          { formula: `=D${index + 2}*E${index + 2}` }, // Cost = Budget * Hours
+          { value: plan.status }, // Or map to status name
+          { value: plan.description || '' }
+        ]
+      }))
+    ];
+
+    // Build the sheet descriptor
+    this.sheets = [
+      {
+        name: 'Budget Planner',
+        rows,
+        frozenRows: 1,
+        columns: [
+          { width: 160 },
+          { width: 160 },
+          { width: 100 },
+          { width: 150 },
+          { width: 130 },
+          { width: 150 },
+          { width: 120 },
+          { width: 200 }
+        ]
+      }
+    ];
+  }
 
   // In real app → fetch from API
   public projects = ["Project Alpha", "Project Beta", "Project Gamma"];
