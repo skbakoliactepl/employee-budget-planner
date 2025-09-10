@@ -3,6 +3,6 @@
     <app-navbar></app-navbar>
 
     <h4>Employee Budget & Time Allocation Planner</h4>
-    <kendo-spreadsheet [sheets]="sheets" style="height: 92vh; width: 100%">
+    <kendo-spreadsheet [sheets]="sheets" *ngIf="sheets.length > 0" style="height: 92vh; width: 100%">
     </kendo-spreadsheet>
 </div>

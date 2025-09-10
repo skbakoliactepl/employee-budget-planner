@@ -8,7 +8,7 @@ import { Employee } from '../../core/models';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private apiURL = `${environment.apiBaseURL}/employee`
+  private apiURL = `${environment.apiBaseURL}/Employee`
 
   constructor(private http: HttpClient) { }
   // ✅ Fetch all employees

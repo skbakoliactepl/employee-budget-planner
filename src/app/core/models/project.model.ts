@@ -1,12 +1,15 @@
 import { Employee } from './employee.model';
 
 export interface Project {
-    id: number;
+    projectID: number;              // matches backend
     projectName: string;
     description?: string;
-    startDate: Date;
-    endDate?: Date;
-    employees?: Employee[]; // optional relation
-    createdAt: Date;
-    updatedAt: Date;
+    startDate: string;              // use string to match backend ISO date, can parse to Date in components if needed
+    endDate?: string;               // optional
+    employees?: Employee[];         // optional relation
+    createdBy: number;
+    createdAt: string;              // ISO string from backend
+    updatedBy: number;
+    updatedAt: string;              // ISO string from backend
+    isDeleted: boolean;
 }
