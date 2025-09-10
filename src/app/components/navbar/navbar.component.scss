@@ -1,5 +1,5 @@
 .appbar-container {
-    height: 5vh; // fixed navbar height
+    height: 10vh; // fixed navbar height
     width: 100%;
     background-color: var(--kendo-color-primary);
 }
@@ -23,6 +23,7 @@
     font-weight: 700;
     color: white;
     text-decoration: none;
+    letter-spacing: 0.08em;
 
     span {
         color: var(--kendo-color-secondary);
