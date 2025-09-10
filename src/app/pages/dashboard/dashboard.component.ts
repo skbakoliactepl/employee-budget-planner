@@ -4,6 +4,7 @@ import { SheetDescriptor, SpreadsheetModule } from "@progress/kendo-angular-spre
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { BudgetService } from '../../services/budget/budget.service';
 import { BudgetPlan } from '../../core/models';
+import { BudgetStatus, statusColors } from '../../core/enums/budget-status.enum';
 
 @Component({
   selector: 'app-dashboard',
@@ -105,18 +106,21 @@ export class DashboardComponent {
           { value: 'Comments', bold: true, background: '#E1EFFF' }
         ]
       },
-      ...plans.map((plan, index) => ({
-        cells: [
-          { value: plan.project }, // Or map to project name
-          { value: plan.employeeName }, // Or map to employee name
-          { value: plan.month }, // Or map to month name
-          { value: plan.budgetAllocated },
-          { value: plan.hoursPlanned },
-          { formula: `=D${index + 2}*E${index + 2}` }, // Cost = Budget * Hours
-          { value: plan.status }, // Or map to status name
-          { value: plan.description || '' }
-        ]
-      }))
+      ...plans.map((plan, index) => {
+        const statusBg = statusColors[plan.status as BudgetStatus] || 'var(--white-color)';
+        return {
+          cells: [
+            { value: plan.project },
+            { value: plan.employeeName },
+            { value: plan.month },
+            { value: plan.budgetAllocated },
+            { value: plan.hoursPlanned },
+            { formula: `=D${index + 2}*E${index + 2}` },
+            { value: plan.status, background: statusBg },
+            { value: plan.description || '' }
+          ]
+        };
+      })
     ];
 
     // Build the sheet descriptor
